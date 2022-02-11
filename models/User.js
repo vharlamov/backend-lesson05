@@ -14,6 +14,7 @@ const schema = new Schema(
 	},
 	{
 		timestamps: true,
+		versionKey: false,
 	}
 )
 
