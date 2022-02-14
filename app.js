@@ -13,14 +13,25 @@ app.use(express.urlencoded({ extended: false })) // ???
 
 app.use('/api', routes) // Middleware для роутинга
 
-// app.use(cors())
-// app.options('*', cors())
-//
-// app.all('*', function (req, res, next) {
-// 	res.header('Access-Control-Allow-Origin', '*')
-// 	res.header('Access-Control-Allow-Headers', 'X-Requested-With')
-// 	next()
-// })
+app.use(
+	cors({
+		origin: '*',
+		methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+	})
+)
+
+// app.options(
+// 	'*',
+// 	cors({
+// 		origin: '*',
+// 		methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+// 	})
+// )
+
+app.all('*', function (req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*')
+	next()
+})
 
 // if (process.env.NODE_ENV === 'production') {
 // 	console.log('Production')
